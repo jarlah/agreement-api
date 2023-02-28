@@ -7,3 +7,8 @@
 {"id":"1414eef5-dcfd-4b4d-9c98-f07e1ef1bab4","agreementPrice":123.233,"customerId":"6a1dfe10-fbf7-4776-aab6-95fb9b3708c4"}%
 ~ 
 ```
+
+### TODO
+
+- [ ] Add correlationId in logging when logging anything after reaching controller
+- [ ] Add api doc with openapi
