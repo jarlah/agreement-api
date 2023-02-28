@@ -12,8 +12,8 @@ import java.util.List;
 public class BeanValidationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
 
     @Override
-    public Response toResponse(ConstraintViolationException e) {
-        var errors = e.getConstraintViolations()
+    public Response toResponse(ConstraintViolationException exception) {
+        var errors = exception.getConstraintViolations()
                 .stream()
                 .map(violation ->
                         new ValidationError(
