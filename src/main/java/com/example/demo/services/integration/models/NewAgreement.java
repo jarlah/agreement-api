@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 // Not record because of maven formatter plugin doesn't like records
 public class NewAgreement {
-  private String customerPid;
-  private String customerName;
-  private BigDecimal agreementPrice;
+  private final String customerPid;
+  private final String customerName;
+  private final BigDecimal agreementPrice;
 }

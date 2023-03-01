@@ -10,6 +10,6 @@ import java.util.UUID;
 @AllArgsConstructor
 // Not record because of maven formatter plugin doesn't like records
 public class NewAgreement {
-  private BigDecimal amount;
-  private UUID customerId;
+  private final BigDecimal amount;
+  private final UUID customerId;
 }

@@ -9,7 +9,7 @@ import java.util.UUID;
 @AllArgsConstructor
 // Not record because of maven formatter plugin doesn't like records
 public class Customer {
-  private UUID id;
-  private String pid;
-  private String name;
+  private final UUID id;
+  private final String pid;
+  private final String name;
 }

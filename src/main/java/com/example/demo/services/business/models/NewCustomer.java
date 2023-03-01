@@ -7,6 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 // Not record because of maven formatter plugin doesn't like records
 public class NewCustomer {
-  private String name;
-  private String pid;
+  private final String name;
+  private final String pid;
 }
