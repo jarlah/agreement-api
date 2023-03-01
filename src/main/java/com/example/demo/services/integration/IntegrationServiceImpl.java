@@ -25,7 +25,7 @@ public class IntegrationServiceImpl implements IntegrationService {
     var customer = businessService.createCustomer(newAgreement.getCustomerPid(), newAgreement.getCustomerName());
     var agreement = businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
     letterService.sendAgreementLetterToCustomer(agreement, customer);
-    agreement = businessService.updateAgreementStatus(agreement, AgreementStatus.COMPLETE);
+    agreement = businessService.updateAgreementStatus(agreement, AgreementStatus.AGREEMENT_SENT);
     return agreement;
   }
 }

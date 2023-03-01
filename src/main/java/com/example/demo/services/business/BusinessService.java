@@ -7,6 +7,7 @@ import com.example.demo.services.business.models.Customer;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+/** This service might call out to an external api */
 public interface BusinessService {
 
   Customer createCustomer(String customerPid, String name);

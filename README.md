@@ -11,4 +11,5 @@
 ### TODO
 
 - [x] Add correlationId in logging when logging anything after reaching controller
-- [ ] Add api doc with openapi
+- [ ] Add api doc with openapi/swagger
+- [ ] Find a way to assert json paths in tests
