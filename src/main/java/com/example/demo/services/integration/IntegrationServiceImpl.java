@@ -15,7 +15,7 @@ public class IntegrationServiceImpl implements IntegrationService {
 
   @Autowired
   public IntegrationServiceImpl(BusinessService businessService, LetterService letterService) {
-    this.businessService =     businessService;
+    this.businessService = businessService;
     this.letterService = letterService;
   }
 
