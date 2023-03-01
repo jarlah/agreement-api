@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 public class LetterServiceDummyImpl implements LetterService {
   @Override
   public LetterStatus sendAgreementLetterToCustomer(Agreement agreement, Customer customer) {
-    // TODO logic
     return LetterStatus.SENT_OK;
   }
 }
