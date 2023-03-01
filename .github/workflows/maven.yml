@@ -35,5 +35,8 @@ jobs:
       with:
         files: |
           src/**/*.java
+    - name: Fail if formatter left modified files
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
+      run: exit 1
     - name: Build with Maven
       run: mvn -B package --file pom.xml
