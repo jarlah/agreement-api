@@ -5,5 +5,5 @@ import com.example.demo.services.integration.models.NewAgreement;
 
 public interface IntegrationService {
 
-    Agreement createAgreement(NewAgreement newAgreementDto);
+  Agreement createAgreement(NewAgreement newAgreementDto);
 }

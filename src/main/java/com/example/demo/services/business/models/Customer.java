@@ -1,5 +1,15 @@
 package com.example.demo.services.business.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.UUID;
 
-public record Customer(UUID id, String pid, String name) {}
+@Data
+@AllArgsConstructor
+// Not record because of maven formatter plugin doesn't like records
+public class Customer {
+  private UUID id;
+  private String pid;
+  private String name;
+}

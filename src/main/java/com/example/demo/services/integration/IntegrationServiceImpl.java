@@ -10,20 +10,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class IntegrationServiceImpl implements IntegrationService {
 
-    private final BusinessService businessService;
-    private final LetterService letterService;
+  private final BusinessService businessService;
+  private final LetterService letterService;
 
-    @Autowired
-    public IntegrationServiceImpl(BusinessService businessService, LetterService letterService) {
-        this.businessService = businessService;
-        this.letterService = letterService;
-    }
+  @Autowired
+  public IntegrationServiceImpl(BusinessService businessService, LetterService letterService) {
+    this.businessService = businessService;
+    this.letterService = letterService;
+  }
 
-    @Override
-    public Agreement createAgreement(NewAgreement newAgreement) {
-        var customer = businessService.createCustomer(newAgreement.customerPid(), newAgreement.customerName());
-        var agreement = businessService.createAgreement(customer.id(), newAgreement.agreementPrice());
-        letterService.sendAgreementLetterToCustomer(agreement, customer);
-        return agreement;
-    }
+  @Override
+  public Agreement createAgreement(NewAgreement newAgreement) {
+    var customer =
+        businessService.createCustomer(
+            newAgreement.getCustomerPid(), newAgreement.getCustomerName());
+    var agreement =
+        businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
+    letterService.sendAgreementLetterToCustomer(agreement, customer);
+    return agreement;
+  }
 }

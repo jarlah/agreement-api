@@ -14,19 +14,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Path("/api")
 public class IntegrationController {
 
-    private final IntegrationService integrationService;
+  private final IntegrationService integrationService;
 
-    @Autowired
-    public IntegrationController(IntegrationService integrationService) {
-        this.integrationService = integrationService;
-    }
+  @Autowired
+  public IntegrationController(IntegrationService integrationService) {
+    this.integrationService = integrationService;
+  }
 
-    @POST
-    @Path("/agreement")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response createAgreement(@Valid NewAgreementDto newAgreementDto) {
-        var agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
-        return Response.ok(agreement).build();
-    }
+  @POST
+  @Path("/agreement")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response createAgreement(@Valid NewAgreementDto newAgreementDto) {
+    var agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
+    return Response.ok(agreement).build();
+  }
 }

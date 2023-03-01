@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface BusinessService {
 
-    Customer createCustomer(String customerPid, String name);
+  Customer createCustomer(String customerPid, String name);
 
-    Agreement createAgreement(UUID customerId, BigDecimal agreementPrice);
+  Agreement createAgreement(UUID customerId, BigDecimal agreementPrice);
 }
