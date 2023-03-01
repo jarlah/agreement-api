@@ -10,5 +10,5 @@
 
 ### TODO
 
-- [ ] Add correlationId in logging when logging anything after reaching controller
+- [x] Add correlationId in logging when logging anything after reaching controller
 - [ ] Add api doc with openapi
