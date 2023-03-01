@@ -21,11 +21,8 @@ public class IntegrationServiceImpl implements IntegrationService {
 
   @Override
   public Agreement createAgreement(NewAgreement newAgreement) {
-    var customer =
-        businessService.createCustomer(
-            newAgreement.getCustomerPid(), newAgreement.getCustomerName());
-    var agreement =
-        businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
+    var customer = businessService.createCustomer(newAgreement.getCustomerPid(), newAgreement.getCustomerName());
+    var agreement = businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
     letterService.sendAgreementLetterToCustomer(agreement, customer);
     return agreement;
   }

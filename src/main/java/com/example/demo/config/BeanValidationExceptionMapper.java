@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Provider
-public class BeanValidationExceptionMapper
-    implements ExceptionMapper<ConstraintViolationException> {
+public class BeanValidationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
 
   @Override
   public Response toResponse(ConstraintViolationException exception) {
