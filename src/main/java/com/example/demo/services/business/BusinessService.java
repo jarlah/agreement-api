@@ -1,6 +1,7 @@
 package com.example.demo.services.business;
 
 import com.example.demo.services.business.models.Agreement;
+import com.example.demo.services.business.models.AgreementStatus;
 import com.example.demo.services.business.models.Customer;
 
 import java.math.BigDecimal;
@@ -11,4 +12,6 @@ public interface BusinessService {
   Customer createCustomer(String customerPid, String name);
 
   Agreement createAgreement(UUID customerId, BigDecimal agreementPrice);
+
+  Agreement updateAgreementStatus(Agreement agreement, AgreementStatus agreementStatus);
 }

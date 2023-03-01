@@ -11,6 +11,7 @@ import java.util.UUID;
 // Not record because of maven formatter plugin doesn't like records
 public class Agreement {
   private final UUID id;
+  private final AgreementStatus status;
   private final BigDecimal agreementPrice;
   private final UUID customerId;
 }

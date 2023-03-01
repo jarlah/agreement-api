@@ -2,6 +2,7 @@ package com.example.demo.services.integration;
 
 import com.example.demo.services.business.BusinessService;
 import com.example.demo.services.business.models.Agreement;
+import com.example.demo.services.business.models.AgreementStatus;
 import com.example.demo.services.integration.models.NewAgreement;
 import com.example.demo.services.letter.LetterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class IntegrationServiceImpl implements IntegrationService {
     var customer = businessService.createCustomer(newAgreement.getCustomerPid(), newAgreement.getCustomerName());
     var agreement = businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
     letterService.sendAgreementLetterToCustomer(agreement, customer);
+    agreement = businessService.updateAgreementStatus(agreement, AgreementStatus.COMPLETE);
     return agreement;
   }
 }
