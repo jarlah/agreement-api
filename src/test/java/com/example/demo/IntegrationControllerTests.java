@@ -1,6 +1,11 @@
 package com.example.demo;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.example.demo.services.business.models.Agreement;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,12 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class IntegrationControllerTests {
@@ -29,7 +28,8 @@ public class IntegrationControllerTests {
     obj.put("agreementPrice", 1000);
 
     // When:
-    ResponseEntity<Agreement> entity = this.restTemplate.postForEntity("/api/agreement", obj, Agreement.class);
+    ResponseEntity<Agreement> entity =
+        this.restTemplate.postForEntity("/api/agreement", obj, Agreement.class);
 
     // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -49,14 +49,15 @@ public class IntegrationControllerTests {
     obj.put("agreementPrice", 1000);
 
     // When:
-    ResponseEntity<String> entity = this.restTemplate.postForEntity("/api/agreement", obj, String.class);
+    ResponseEntity<String> entity =
+        this.restTemplate.postForEntity("/api/agreement", obj, String.class);
 
     // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     assertThat(entity.getBody())
         .isEqualTo(
-            "{\"errors\":[{\"field\":\"createAgreement.newAgreementDto.customerPid\","
-                + "\"message\":\"size must be between 1 and 11\"}]}");
+            """
+                        {"errors":[{"field":"createAgreement.newAgreementDto.customerPid","message":"size must be between 1 and 11"}]}""");
   }
 
   @Test
@@ -68,14 +69,15 @@ public class IntegrationControllerTests {
     obj.put("agreementPrice", 0);
 
     // When:
-    ResponseEntity<String> entity = this.restTemplate.postForEntity("/api/agreement", obj, String.class);
+    ResponseEntity<String> entity =
+        this.restTemplate.postForEntity("/api/agreement", obj, String.class);
 
     // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     assertThat(entity.getBody())
         .isEqualTo(
-            "{\"errors\":[{\"field\":\"createAgreement.newAgreementDto.agreementPrice\","
-                + "\"message\":\"must be greater than or equal to 1\"}]}");
+            """
+                        {"errors":[{"field":"createAgreement.newAgreementDto.agreementPrice","message":"must be greater than or equal to 1"}]}""");
   }
 
   @Test
@@ -87,13 +89,14 @@ public class IntegrationControllerTests {
     obj.put("agreementPrice", 1000);
 
     // When:
-    ResponseEntity<String> entity = this.restTemplate.postForEntity("/api/agreement", obj, String.class);
+    ResponseEntity<String> entity =
+        this.restTemplate.postForEntity("/api/agreement", obj, String.class);
 
     // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     assertThat(entity.getBody())
         .isEqualTo(
-            "{\"errors\":[{\"field\":\"createAgreement.newAgreementDto.customerName\","
-                + "\"message\":\"size must be between 1 and 100\"}]}");
+            """
+                     {"errors":[{"field":"createAgreement.newAgreementDto.customerName","message":"size must be between 1 and 100"}]}""");
   }
 }

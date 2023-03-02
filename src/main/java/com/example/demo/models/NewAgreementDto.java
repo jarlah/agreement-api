@@ -2,9 +2,8 @@ package com.example.demo.models;
 
 import com.example.demo.services.integration.models.NewAgreement;
 import jakarta.validation.constraints.*;
-import lombok.Data;
-
 import java.math.BigDecimal;
+import lombok.Data;
 
 @Data
 // Not record because of maven formatter plugin doesn't like records

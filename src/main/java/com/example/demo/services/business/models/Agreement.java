@@ -1,10 +1,9 @@
 package com.example.demo.services.business.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import java.math.BigDecimal;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data
 @AllArgsConstructor

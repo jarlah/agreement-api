@@ -1,9 +1,8 @@
 package com.example.demo.services.business.models;
 
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor

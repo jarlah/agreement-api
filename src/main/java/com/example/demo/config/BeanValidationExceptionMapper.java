@@ -6,14 +6,12 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
+import lombok.Data;
 
 @Provider
-public class BeanValidationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
+public class BeanValidationExceptionMapper
+    implements ExceptionMapper<ConstraintViolationException> {
 
   @Override
   public Response toResponse(ConstraintViolationException exception) {

@@ -3,10 +3,9 @@ package com.example.demo.services.business;
 import com.example.demo.services.business.models.Agreement;
 import com.example.demo.services.business.models.AgreementStatus;
 import com.example.demo.services.business.models.Customer;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.UUID;
+import org.springframework.stereotype.Service;
 
 @Service
 public class BusinessServiceDummyImpl implements BusinessService {
@@ -22,6 +21,10 @@ public class BusinessServiceDummyImpl implements BusinessService {
 
   @Override
   public Agreement updateAgreementStatus(Agreement agreement, AgreementStatus agreementStatus) {
-    return new Agreement(agreement.getId(), agreementStatus, agreement.getAgreementPrice(), agreement.getCustomerId());
+    return new Agreement(
+        agreement.getId(),
+        agreementStatus,
+        agreement.getAgreementPrice(),
+        agreement.getCustomerId());
   }
 }

@@ -14,8 +14,6 @@ import com.example.demo.services.letter.models.LetterStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-
 @Service
 public class IntegrationServiceImpl implements IntegrationService {
 
@@ -30,10 +28,13 @@ public class IntegrationServiceImpl implements IntegrationService {
 
   @Override
   public Agreement createAgreement(NewAgreement newAgreement)
-      throws LetterFailedException, CreateCustomerFailed, CreateAgreementFailed, UpdateAgreementStatusFailed,
-          SendAgreementLetterFailed {
-    var customer = businessService.createCustomer(newAgreement.getCustomerPid(), newAgreement.getCustomerName());
-    var agreement = businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
+      throws LetterFailedException, CreateCustomerFailed, CreateAgreementFailed,
+          UpdateAgreementStatusFailed, SendAgreementLetterFailed {
+    var customer =
+        businessService.createCustomer(
+            newAgreement.getCustomerPid(), newAgreement.getCustomerName());
+    var agreement =
+        businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
     var status = letterService.sendAgreementLetterToCustomer(agreement, customer);
     if (status == LetterStatus.SENT_OK) {
       agreement = businessService.updateAgreementStatus(agreement, AgreementStatus.AGREEMENT_SENT);

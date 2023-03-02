@@ -13,4 +13,4 @@
 - [x] Add correlationId in logging when logging anything after reaching controller
 - [ ] Add api doc with openapi/swagger
 - [ ] Find a way to assert json paths in tests
-- [ ] When adding actual implementations, consider what exceptions will be thrown
+- [ ] When adding actual implementations, consider what exceptions will be thrown (in addition to or )
