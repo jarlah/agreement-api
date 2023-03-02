@@ -22,11 +22,16 @@ public class IntegrationControllerTests {
 
   @Test
   public void createAgreementWithValidPayload() {
+    // Given:
     Map<String, Object> obj = new HashMap<>();
     obj.put("customerPid", "11111111111");
     obj.put("customerName", "Donald Duck");
     obj.put("agreementPrice", 1000);
+
+    // When:
     ResponseEntity<Agreement> entity = this.restTemplate.postForEntity("/api/agreement", obj, Agreement.class);
+
+    // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
     assertThat(entity.getBody().getAgreementPrice()).isEqualTo(BigDecimal.valueOf(1000));
     assertThat(entity.getBody().getId()).isNotNull();
@@ -37,11 +42,16 @@ public class IntegrationControllerTests {
 
   @Test
   public void createAgreementWithBadCustomerPid() {
+    // Given:
     Map<String, Object> obj = new HashMap<>();
     obj.put("customerPid", "111111111111111111");
     obj.put("customerName", "Donald Duck");
     obj.put("agreementPrice", 1000);
+
+    // When:
     ResponseEntity<String> entity = this.restTemplate.postForEntity("/api/agreement", obj, String.class);
+
+    // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     assertThat(entity.getBody())
         .isEqualTo(
@@ -51,11 +61,16 @@ public class IntegrationControllerTests {
 
   @Test
   public void createAgreementWithBadAgreementPrice() {
+    // Given:
     Map<String, Object> obj = new HashMap<>();
     obj.put("customerPid", "01019912345");
     obj.put("customerName", "Donald Duck");
     obj.put("agreementPrice", 0);
+
+    // When:
     ResponseEntity<String> entity = this.restTemplate.postForEntity("/api/agreement", obj, String.class);
+
+    // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     assertThat(entity.getBody())
         .isEqualTo(
@@ -65,11 +80,16 @@ public class IntegrationControllerTests {
 
   @Test
   public void createAgreementWithBadCustomerName() {
+    // Given:
     Map<String, Object> obj = new HashMap<>();
     obj.put("customerPid", "01019912345");
     obj.put("customerName", "");
     obj.put("agreementPrice", 1000);
+
+    // When:
     ResponseEntity<String> entity = this.restTemplate.postForEntity("/api/agreement", obj, String.class);
+
+    // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     assertThat(entity.getBody())
         .isEqualTo(
