@@ -31,10 +31,8 @@ public class IntegrationServiceImpl implements IntegrationService {
       throws LetterFailedException, CreateCustomerFailed, CreateAgreementFailed,
           UpdateAgreementStatusFailed, SendAgreementLetterFailed {
     var customer =
-        businessService.createCustomer(
-            newAgreement.getCustomerPid(), newAgreement.getCustomerName());
-    var agreement =
-        businessService.createAgreement(customer.getId(), newAgreement.getAgreementPrice());
+        businessService.createCustomer(newAgreement.customerPid(), newAgreement.customerName());
+    var agreement = businessService.createAgreement(customer.id(), newAgreement.agreementPrice());
     var status = letterService.sendAgreementLetterToCustomer(agreement, customer);
     if (status == LetterStatus.SENT_OK) {
       agreement = businessService.updateAgreementStatus(agreement, AgreementStatus.AGREEMENT_SENT);

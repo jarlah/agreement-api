@@ -33,10 +33,10 @@ public class IntegrationControllerTests {
 
     // Then:
     assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(entity.getBody().getAgreementPrice()).isEqualTo(BigDecimal.valueOf(1000));
-    assertThat(entity.getBody().getId()).isNotNull();
-    assertThat(entity.getBody().getCustomerId()).isNotNull();
-    assertThat(entity.getBody().getStatus().name()).isEqualTo("AGREEMENT_SENT");
+    assertThat(entity.getBody().agreementPrice()).isEqualTo(BigDecimal.valueOf(1000));
+    assertThat(entity.getBody().id()).isNotNull();
+    assertThat(entity.getBody().customerId()).isNotNull();
+    assertThat(entity.getBody().status().name()).isEqualTo("AGREEMENT_SENT");
     // TODO find a way to assert json without resorting to referencing Agreement class
   }
 

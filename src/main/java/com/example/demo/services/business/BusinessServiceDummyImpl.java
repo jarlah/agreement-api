@@ -22,9 +22,6 @@ public class BusinessServiceDummyImpl implements BusinessService {
   @Override
   public Agreement updateAgreementStatus(Agreement agreement, AgreementStatus agreementStatus) {
     return new Agreement(
-        agreement.getId(),
-        agreementStatus,
-        agreement.getAgreementPrice(),
-        agreement.getCustomerId());
+        agreement.id(), agreementStatus, agreement.agreementPrice(), agreement.customerId());
   }
 }

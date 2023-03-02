@@ -38,7 +38,7 @@ public class IntegrationController {
     Agreement agreement = null;
     try {
       agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
-      logger.info("Successfully created agreement with id [%s]".formatted(agreement.getId()));
+      logger.info("Successfully created agreement with id [%s]".formatted(agreement.id()));
       return Response.ok(agreement).build();
     } catch (SendAgreementLetterFailed
         | LetterFailedException
