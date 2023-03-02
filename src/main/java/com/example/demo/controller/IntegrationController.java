@@ -1,7 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.models.NewAgreementDto;
+import com.example.demo.services.business.exceptions.CreateAgreementFailed;
+import com.example.demo.services.business.exceptions.CreateCustomerFailed;
+import com.example.demo.services.business.exceptions.UpdateAgreementStatusFailed;
+import com.example.demo.services.business.models.Agreement;
 import com.example.demo.services.integration.IntegrationService;
+import com.example.demo.services.integration.exceptions.SendAgreementLetterFailed;
+import com.example.demo.services.letter.exceptions.LetterFailedException;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -29,8 +35,18 @@ public class IntegrationController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response createAgreement(@Valid NewAgreementDto newAgreementDto) {
-    var agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
-    logger.info("Successfully created agreement with id [%s]".formatted(agreement.getId()));
-    return Response.ok(agreement).build();
+    Agreement agreement = null;
+    try {
+      agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
+      logger.info("Successfully created agreement with id [%s]".formatted(agreement.getId()));
+      return Response.ok(agreement).build();
+    } catch (SendAgreementLetterFailed
+        | LetterFailedException
+        | CreateCustomerFailed
+        | CreateAgreementFailed
+        | UpdateAgreementStatusFailed e) {
+      logger.error("Failed to create agreement", e);
+      return Response.serverError().build();
+    }
   }
 }
