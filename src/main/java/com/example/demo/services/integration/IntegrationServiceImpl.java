@@ -30,7 +30,9 @@ public class IntegrationServiceImpl implements IntegrationService {
           UpdateAgreementStatusFailed {
     var customer =
         businessService.createCustomer(newAgreement.customerPid(), newAgreement.customerName());
-    var agreement = businessService.createAgreement(customer.id(), newAgreement.agreementPrice());
+    var agreement =
+        businessService.createAgreement(
+            customer.id(), newAgreement.agreementPrice(), newAgreement.agreementDate());
     // Can atm only be successful
     var status = letterService.sendAgreementLetterToCustomer(agreement, customer);
     return businessService.updateAgreementStatus(agreement, AgreementStatus.AGREEMENT_SENT);
