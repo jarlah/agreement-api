@@ -1,5 +1,9 @@
 # Agreement rest api
 
+Another implementation of this repository, implemented with pure jersey, can be found at:
+
+https://github.com/jarlah/agreement-api-jersey
+
 ## How to call the agreement api
 
 ```
