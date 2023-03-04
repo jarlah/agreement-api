@@ -5,7 +5,6 @@ import com.example.demo.services.business.exceptions.CreateAgreementFailed;
 import com.example.demo.services.business.exceptions.CreateCustomerFailed;
 import com.example.demo.services.business.exceptions.UpdateAgreementStatusFailed;
 import com.example.demo.services.integration.IntegrationService;
-import com.example.demo.services.integration.exceptions.SendAgreementLetterFailed;
 import com.example.demo.services.letter.exceptions.LetterFailedException;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -35,7 +34,7 @@ public class IntegrationController {
   @Produces(MediaType.APPLICATION_JSON)
   public Response createAgreement(@Valid NewAgreementDto newAgreementDto)
       throws LetterFailedException, CreateAgreementFailed, CreateCustomerFailed,
-          UpdateAgreementStatusFailed, SendAgreementLetterFailed {
+          UpdateAgreementStatusFailed {
     var agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
     logger.info("Successfully created agreement with id [%s]".formatted(agreement.id()));
     return Response.ok(agreement).build();
