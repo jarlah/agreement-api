@@ -64,7 +64,7 @@ public class IntegrationControllerTests {
     assertThat(entity.getBody())
         .isEqualTo(
             """
-                        {"errors":[{"field":"createAgreement.newAgreementDto.customerPid","message":"Customer pid is not valid"}]}""");
+                        {"errors":[{"field":"createNewAgreement.newAgreementDto.customerPid","message":"Customer pid is not valid"}]}""");
   }
 
   @Test
@@ -86,7 +86,7 @@ public class IntegrationControllerTests {
     assertThat(entity.getBody())
         .isEqualTo(
             """
-                        {"errors":[{"field":"createAgreement.newAgreementDto.agreementPrice","message":"must be greater than or equal to 1"}]}""");
+                        {"errors":[{"field":"createNewAgreement.newAgreementDto.agreementPrice","message":"must be greater than or equal to 1"}]}""");
   }
 
   @Test
@@ -108,7 +108,7 @@ public class IntegrationControllerTests {
     assertThat(entity.getBody())
         .isEqualTo(
             """
-                     {"errors":[{"field":"createAgreement.newAgreementDto.customerName","message":"size must be between 1 and 100"}]}""");
+                     {"errors":[{"field":"createNewAgreement.newAgreementDto.customerName","message":"size must be between 1 and 100"}]}""");
   }
 
   @Test
@@ -129,6 +129,6 @@ public class IntegrationControllerTests {
     assertThat(entity.getBody())
         .isEqualTo(
             """
-                             {"errors":[{"field":"createAgreement.newAgreementDto.agreementDate","message":"must not be null"}]}""");
+                             {"errors":[{"field":"createNewAgreement.newAgreementDto.agreementDate","message":"must not be null"}]}""");
   }
 }
