@@ -4,7 +4,6 @@ import com.example.demo.models.NewAgreementDto;
 import com.example.demo.services.business.exceptions.CreateAgreementFailed;
 import com.example.demo.services.business.exceptions.CreateCustomerFailed;
 import com.example.demo.services.business.exceptions.UpdateAgreementStatusFailed;
-import com.example.demo.services.business.models.Agreement;
 import com.example.demo.services.integration.IntegrationService;
 import com.example.demo.services.integration.exceptions.SendAgreementLetterFailed;
 import com.example.demo.services.letter.exceptions.LetterFailedException;
@@ -34,19 +33,11 @@ public class IntegrationController {
   @Path("/agreement")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response createAgreement(@Valid NewAgreementDto newAgreementDto) {
-    Agreement agreement = null;
-    try {
-      agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
-      logger.info("Successfully created agreement with id [%s]".formatted(agreement.id()));
-      return Response.ok(agreement).build();
-    } catch (SendAgreementLetterFailed
-        | LetterFailedException
-        | CreateCustomerFailed
-        | CreateAgreementFailed
-        | UpdateAgreementStatusFailed e) {
-      logger.error("Failed to create agreement", e);
-      return Response.serverError().build();
-    }
+  public Response createAgreement(@Valid NewAgreementDto newAgreementDto)
+      throws LetterFailedException, CreateAgreementFailed, CreateCustomerFailed,
+          UpdateAgreementStatusFailed, SendAgreementLetterFailed {
+    var agreement = this.integrationService.createAgreement(newAgreementDto.toServiceModel());
+    logger.info("Successfully created agreement with id [%s]".formatted(agreement.id()));
+    return Response.ok(agreement).build();
   }
 }

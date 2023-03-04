@@ -6,11 +6,9 @@ import com.example.demo.services.business.exceptions.CreateCustomerFailed;
 import com.example.demo.services.business.exceptions.UpdateAgreementStatusFailed;
 import com.example.demo.services.business.models.Agreement;
 import com.example.demo.services.business.models.AgreementStatus;
-import com.example.demo.services.integration.exceptions.SendAgreementLetterFailed;
 import com.example.demo.services.integration.models.NewAgreement;
 import com.example.demo.services.letter.LetterService;
 import com.example.demo.services.letter.exceptions.LetterFailedException;
-import com.example.demo.services.letter.models.LetterStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,16 +27,11 @@ public class IntegrationServiceImpl implements IntegrationService {
   @Override
   public Agreement createAgreement(NewAgreement newAgreement)
       throws LetterFailedException, CreateCustomerFailed, CreateAgreementFailed,
-          UpdateAgreementStatusFailed, SendAgreementLetterFailed {
+          UpdateAgreementStatusFailed {
     var customer =
         businessService.createCustomer(newAgreement.customerPid(), newAgreement.customerName());
     var agreement = businessService.createAgreement(customer.id(), newAgreement.agreementPrice());
-    var status = letterService.sendAgreementLetterToCustomer(agreement, customer);
-    if (status == LetterStatus.SENT_OK) {
-      agreement = businessService.updateAgreementStatus(agreement, AgreementStatus.AGREEMENT_SENT);
-    } else {
-      throw new SendAgreementLetterFailed("Status for letter is: %s".formatted(status));
-    }
-    return agreement;
+    letterService.sendAgreementLetterToCustomer(agreement, customer);
+    return businessService.updateAgreementStatus(agreement, AgreementStatus.AGREEMENT_SENT);
   }
 }
