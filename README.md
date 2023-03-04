@@ -1,5 +1,7 @@
 # Agreement rest api
 
+Implemented with Spring Boot 3.
+
 Another implementation of this repository, implemented with pure jersey, can be found at:
 
 https://github.com/jarlah/agreement-api-jersey
