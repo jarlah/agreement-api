@@ -28,9 +28,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-core</artifactId>
+			<version>2.2.8</version>
 		</dependency>
 		<dependency>
 			<groupId>no.bekk.bekkopen</groupId>
