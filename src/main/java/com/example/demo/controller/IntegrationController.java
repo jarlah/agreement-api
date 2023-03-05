@@ -42,11 +42,18 @@ public class IntegrationController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "New agreement")
-  @ApiResponses(value = {
-          @ApiResponse(responseCode = "500", description = "Internal server error"),
-          @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ValidationErrors.class))),
-          @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = Agreement.class)))
-  })
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "500", description = "Internal server error"),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Bad request",
+            content = @Content(schema = @Schema(implementation = ValidationErrors.class))),
+        @ApiResponse(
+            responseCode = "200",
+            description = "Success",
+            content = @Content(schema = @Schema(implementation = Agreement.class)))
+      })
   public Response createNewAgreement(@Valid NewAgreementDto newAgreementDto)
       throws LetterFailedException, CreateAgreementFailed, CreateCustomerFailed,
           UpdateAgreementStatusFailed {
