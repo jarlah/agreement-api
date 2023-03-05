@@ -21,6 +21,7 @@ https://github.com/jarlah/agreement-api-jersey
   - [X] have added some annotations, but no autogeneration of spec
 - [ ] Find a way to assert json paths in tests
 - [ ] When adding actual implementations, consider what exceptions will be thrown (in addition to or )
+- [ ] Find out why spring boot app wont run in docker, seems to be some issues with jersey
 
 ### Possible agreement fields
 
