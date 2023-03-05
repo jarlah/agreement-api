@@ -1,6 +1,6 @@
 # Agreement rest api
 
-Implemented with Spring Boot 3.
+Implemented with Spring Boot 3 and jersey starter.
 
 Another implementation of this repository, implemented with pure jersey, can be found at:
 
